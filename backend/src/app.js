@@ -4,6 +4,7 @@ const authRoutes = require("./routes/auth.js");
 
 const budgetRoutes = require("./routes/budget.routes");
 
+const eventRoutes=require("./routes/event.routes.js");
 
 
 
@@ -22,6 +23,7 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/budget", budgetRoutes);
 
+app.use("/api/events", eventRoutes);
 
 
 

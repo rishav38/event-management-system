@@ -4,6 +4,9 @@ const api = axios.create({
   baseURL: "http://localhost:5000/api/budget",
 });
 
+
+
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -17,8 +20,27 @@ export const getOverview = () => api.get("/overview");
 export const addCategory = (name) =>
   api.post("/categories", { name });
 
-export const addItem = (categoryId, title) =>
-  api.post("/items", { categoryId, title });
+/**
+ * Add new item
+ * payload = { title, plannedCost }
+ */
+export const addItem = (categoryId, payload) =>
+  api.post("/items", {
+    categoryId,
+    ...payload,
+  });
 
+/**
+ * Update item (autosave)
+ * payload = { title?, actualCost?, plannedCost? }
+ */
 export const updateItem = (itemId, payload) =>
   api.patch(`/items/${itemId}`, payload);
+
+/**
+ * Update category planned budget
+ */
+export const updateCategoryBudget = (categoryId, plannedBudget) =>
+  api.patch(`/categories/${categoryId}/budget`, { plannedBudget });
+
+

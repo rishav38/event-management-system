@@ -23,18 +23,22 @@ const getOverview = async (req, res) => {
         0
       );
 
-      return {
-        id: cat._id,
-        name: cat.name,
-        items: catItems.map((i) => ({
-  id: i._id,
-  title: i.title,
-  plannedCost: i.plannedCost || 0,
-  actualCost: i.actualCost
-}))
-,
-        categoryTotal
-      };
+    const remaining = (cat.plannedBudget || 0) - categoryTotal;
+
+return {
+  id: cat._id,
+  name: cat.name,
+  plannedBudget: cat.plannedBudget || 0,
+  categoryTotal,
+  remaining,
+  items: catItems.map((i) => ({
+    id: i._id,
+    title: i.title,
+    plannedCost: i.plannedCost || 0,
+    actualCost: i.actualCost
+  }))
+};
+
     });
 
     const overallTotal = categoryMap.reduce(
@@ -195,10 +199,56 @@ const updateItem = async (req, res) => {
   }
 };
 
+//updateCatgoryBudget
+
+const updateCategoryBudget = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { plannedBudget } = req.body;
+    const { weddingId } = req.user;
+
+    if (plannedBudget === undefined || plannedBudget < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid planned budget"
+      });
+    }
+
+    const category = await Category.findOneAndUpdate(
+      { _id: id, weddingId },
+      { $set: { plannedBudget: Number(plannedBudget) } },
+      { new: true }
+    );
+
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: "Category not found"
+      });
+    }
+
+    res.json({
+      success: true,
+      data: {
+        id: category._id,
+        plannedBudget: category.plannedBudget
+      }
+    });
+  } catch (err) {
+    console.error("Update category budget error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to update category budget"
+    });
+  }
+};
+
+
 
 module.exports = {
   getOverview,
   addCategory,
   addItem,
-  updateItem
+  updateItem,
+  updateCategoryBudget,
 };

@@ -1,4 +1,4 @@
-import Event from "../models/Event.js";
+const Event = require("../models/Event");
 
 // TEMP mock user (until auth is added)
 const mockUser = {
@@ -6,7 +6,7 @@ const mockUser = {
   userId: "65f000000000000000000002"
 };
 
-export const createEvent = async (req, res) => {
+const createEvent = async (req, res) => {
   try {
     const { title, startTime, endTime, eventType } = req.body;
 
@@ -48,7 +48,7 @@ export const createEvent = async (req, res) => {
   }
 };
 
-export const getEvents = async (req, res) => {
+const getEvents = async (req, res) => {
   try {
     const events = await Event.find({
       weddingId: mockUser.weddingId
@@ -67,7 +67,8 @@ export const getEvents = async (req, res) => {
     });
   }
 };
-export const updateEvent = async (req, res) => {
+
+const updateEvent = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, startTime, endTime, eventType } = req.body;
@@ -108,7 +109,8 @@ export const updateEvent = async (req, res) => {
     });
   }
 };
-export const deleteEvent = async (req, res) => {
+
+const deleteEvent = async (req, res) => {
   try {
     await Event.findByIdAndDelete(req.params.id);
 
@@ -126,3 +128,9 @@ export const deleteEvent = async (req, res) => {
   }
 };
 
+module.exports = {
+  createEvent,
+  getEvents,
+  updateEvent,
+  deleteEvent
+};

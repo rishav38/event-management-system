@@ -69,22 +69,24 @@ const EditableRow = ({ item }) => {
 
       {/* Costs */}
       <div className="cost-inputs">
-        <input
-          className="planned-input"
-          type="number"
-          value={plannedCost}
-          onChange={(e) => setPlannedCost(e.target.value)}
-        />
-
-        <span className="cost-separator">/</span>
-
-        <input
+         <input
           className="actual-input"
           type="number"
           value={actualCost}
           onChange={(e) => setActualCost(e.target.value)}
         />
         
+        
+
+        <span className="cost-separator">/</span>
+
+        <input
+          className="planned-input"
+          type="number"
+          value={plannedCost}
+          onChange={(e) => setPlannedCost(e.target.value)}
+        />
+       
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const EventSchema = new mongoose.Schema(
   {
@@ -33,4 +33,4 @@ const EventSchema = new mongoose.Schema(
 // performance index
 EventSchema.index({ weddingId: 1, startTime: 1 });
 
-export default mongoose.model("Event", EventSchema);
+module.exports = mongoose.model("Event", EventSchema);

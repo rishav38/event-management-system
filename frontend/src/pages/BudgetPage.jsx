@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import AppLayout from "../layout/AppLayout";
 import CategorySection from "../components/budget/CategorySection";
 import { getOverview, addCategory } from "../services/budget.api";
 
@@ -29,10 +28,10 @@ const BudgetPage = () => {
     fetchOverview();
   };
 
-  if (!data) return <AppLayout>Loading...</AppLayout>;
+  if (!data) return <div>Loading...</div>;
 
   return (
-    <AppLayout>
+    <>
       <h1 className="page-title">Budget</h1>
 
       {data.categories.map((cat) => (
@@ -43,12 +42,10 @@ const BudgetPage = () => {
         />
       ))}
 
-      {/* Add Category Button */}
       <button className="add-category" onClick={() => setShowCategoryDialog(true)}>
         + Add category
       </button>
 
-      {/* Footer */}
       <div className="budget-footer">
         <span>Actual total</span>
         <strong>₹ {data.overallTotal.toLocaleString()}</strong>
@@ -59,7 +56,6 @@ const BudgetPage = () => {
         <button className="secondary">Download XLS</button>
       </div>
 
-      {/* Add Category Dialog */}
       {showCategoryDialog && (
         <div className="dialog-backdrop">
           <div className="dialog">
@@ -76,7 +72,7 @@ const BudgetPage = () => {
           </div>
         </div>
       )}
-    </AppLayout>
+    </>
   );
 };
 

@@ -11,13 +11,18 @@ const categorySchema = new mongoose.Schema(
 
     name: {
       type: String,
-      required: true,
-      trim: true
+      required: true
     },
 
     order: {
       type: Number,
       default: 0
+    },
+
+    plannedBudget: {
+      type: Number,
+      default: 0,
+      min: 0
     }
   },
   { timestamps: true }

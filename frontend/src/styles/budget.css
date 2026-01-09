@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Sophisticated Champagne & Slate Palette */
+  --primary-accent: #d4a373;    
+  --soft-bg: #fdfaf7;           
+  --border-neutral: #eeeae6;    
+  --deep-text: #2d2a26;         
+  --muted-text: #7a746e;        
+  --white: #ffffff;
+}
+
+/* ================================
+   1. CANVAS & LAYOUT
+================================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--white);
+}
+
+.main-content {
+  flex: 1;
+  background: radial-gradient(circle at top left, #fdfaf7, #ffffff);
+  height: 100vh;
+  overflow-y: auto; 
+  padding: 60px 40px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ================================
+   2. SIDEBAR STYLING
+================================ */
+.sidebar {
+  width: 260px;
+  background: #fffafa;
+  padding: 40px 24px;
+  border-right: 1px solid var(--border-neutral);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary-accent);
+  margin-bottom: 32px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: var(--muted-text);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+.sidebar-nav a.active {
+  color: var(--primary-accent);
+  background: var(--soft-bg);
+  font-weight: 700;
+}
+
+.sidebar-nav a:hover {
+  background: var(--soft-bg);
+  color: var(--primary-accent);
+}
+
+/* ================================
+   3. BUDGET SHEET & HEADERS
+================================ */
+.budget-sheet {
+  max-width: 850px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-neutral);
+}
+
+h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 46px;
+  letter-spacing: -1.5px;
+  color: var(--deep-text);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.budget-subtitle {
+  text-align: center;
+  color: var(--primary-accent);
+  font-family: 'Dancing Script', cursive;
+  font-size: 26px;
+  margin-bottom: 40px;
+}
+
+/* ================================
+   4. CATEGORY SECTIONS (WITH HOVER HIGHLIGHTS)
+================================ */
+.category-section {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border-neutral);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-section:hover {
+  border-color: var(--primary-accent);
+  box-shadow: 0 8px 24px rgba(212, 163, 115, 0.08);
+}
+
+.category-header {
+  display: grid;
+  grid-template-columns: 1fr 130px; 
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--soft-bg);
+}
+
+.category-header h3 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary-accent);
+  margin: 0;
+}
+
+.category-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.budget-row {
+  display: grid;
+  grid-template-columns: 1fr 130px; 
+  align-items: center;
+  gap: 20px;
+  padding: 12px 12px;
+  margin: 0 -12px; /* Pulls hover background to the edge of the box padding */
+  border-radius: 8px;
+  border-bottom: 1px solid #f9f7f5;
+  transition: background 0.15s ease;
+}
+
+.budget-row:hover {
+  background: #fcfaf8; /* Soft row highlight */
+}
+
+.budget-row:last-child {
+  border-bottom: none;
+}
+
+/* ================================
+   5. INPUT FIELDS & FONTS
+================================ */
+.title-input {
+  border: none;
+  background: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--deep-text);
+  width: 100%;
+  padding: 8px 0;
+}
+
+.amount-input {
+  border: 1px solid transparent;
+  background: var(--soft-bg);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: right;
+  width: 100%;
+  color: var(--deep-text);
+  box-sizing: border-box;
+}
+
+.amount-input:focus, .title-input:focus,
+.amount-input:hover, .title-input:hover {
+  outline: none;
+  background: #f4f1ee;
+  border-color: var(--border-neutral);
+}
+
+/* ================================
+   6. SLIM FOOTER (TOTAL)
+================================ */
+.budget-footer {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  padding: 16px 24px;
+  background: var(--deep-text);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+
+.budget-footer span {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #a8a29d;
+}
+
+.budget-footer strong {
+  font-size: 26px;
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ================================
+   7. BUTTONS & INTERACTIONS
+================================ */
+.budget-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-bottom: 80px;
+}
+
+button.primary-btn {
+  background: var(--primary-accent);
+  color: white;
+  border: none;
+  padding: 18px 44px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.primary-btn:hover {
+  background: #c29263;
+  box-shadow: 0 4px 12px rgba(212, 163, 115, 0.2);
+}
+
+button.secondary {
+  background: var(--white);
+  color: var(--muted-text);
+  border: 1.5px solid var(--border-neutral);
+  padding: 18px 44px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.secondary:hover {
+  background: var(--soft-bg);
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.add-item {
+  margin-top: 12px;
+  background: transparent;
+  border: 1px dashed var(--primary-accent);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--primary-accent);
+  cursor: pointer;
+}
+
+.add-item:hover {
+  background: var(--primary-accent);
+  color: var(--white);
+  border-style: solid;
+}
+
+.add-category {
+  margin-top: 32px;
+  background: transparent;
+  border: 1.5px solid var(--border-neutral);
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted-text);
+  cursor: pointer;
+}
+
+.add-category:hover {
+  background: var(--deep-text);
+  color: var(--white);
+  border-color: var(--deep-text);
+}
+
+/* ================================
+   8. DIALOG / MODAL STYLING
+================================ */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 42, 38, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.dialog {
+  background: var(--white);
+  width: 100%;
+  max-width: 400px;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.dialog h3 {
+  font-weight: 700;
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--deep-text);
+}
+
+.dialog input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-neutral);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.dialog input:focus {
+  outline: none;
+  border-color: var(--primary-accent);
+  background: var(--soft-bg);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.dialog-actions button {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dialog-actions button:last-child {
+  background: var(--primary-accent);
+  color: white;
+}
+
+.dialog-actions button:first-child {
+  background: #f1eeeb;
+  color: var(--muted-text);
+}
+
+
+
+
+.title-input {
+  border: none;
+  font-size: 15px;
+  background: transparent;
+  outline: none;
+}
+
+.cost-inputs {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+
+.actual-input {
+  width: 80px;
+  text-align: right;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.planned-input {
+  width: 80px;
+  text-align: right;
+  font-size: 13px;
+  color: #777;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.cost-separator {
+  color: #aaa;
+}
+
+.budget-row.overspent {
+  background: #fff3f3;
+}

@@ -1,0 +1,10 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f4f1f6;
+  color: #222;
+}

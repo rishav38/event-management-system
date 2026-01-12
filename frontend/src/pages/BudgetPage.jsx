@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import CategorySection from "../components/budget/CategorySection";
 import { getOverview, addCategory } from "../services/budget.api";
+import BudgetPieChart from "../components/budget/BudgetPieChart";
+
 
 const BudgetPage = () => {
   const [data, setData] = useState(null);
@@ -33,6 +35,8 @@ const BudgetPage = () => {
   return (
     <>
       <h1 className="page-title">Budget</h1>
+
+      <BudgetPieChart categories={data.categories} />
 
       {data.categories.map((cat) => (
         <CategorySection

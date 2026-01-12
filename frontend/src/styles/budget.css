@@ -453,17 +453,19 @@ button.secondary:hover {
 }
 
 .category-budget .actual {
-  font-weight: 800;
-  color: var(--deep-text);
+  font-weight: 700;
+   color: var(--muted-text);
+  
 }
 
 .category-budget .planned {
   width: 90px;
   border: none;
   background: transparent;
-  font-size: 13px;
-  color: var(--muted-text);
+  font-size: 15.5px;
+ color: var(--deep-text);
   text-align: right;
+  font-weight: 700;
 }
 
 .category-budget .planned:focus {
@@ -471,12 +473,27 @@ button.secondary:hover {
   border-bottom: 1px dashed var(--primary-accent);
 }
 
-.category-section.ok {
-  border-left: 4px solid #5cb85c;
-}
 
 .category-section.warning {
   border-left: 4px solid #f0ad4e;
 }
 
 
+/*Pie Chart*/
+.budget-chart-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 36px;
+  border: 1px solid var(--border-neutral);
+}
+
+.budget-chart-card h3 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted-text);
+  text-align: center;
+}

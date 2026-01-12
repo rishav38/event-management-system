@@ -45,7 +45,7 @@ const CategorySection = ({ category, refreshOverview }) => {
 
         <div className="category-budget">
           <span className="actual">
-            ₹ {(category.categoryTotal ?? 0).toLocaleString()}
+            {(category.categoryTotal ?? 0).toLocaleString()}
           </span>
 
           <span className="sep">/</span>

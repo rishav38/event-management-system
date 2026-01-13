@@ -16,6 +16,7 @@ function App() {
       <Routes>
 
         {/* PUBLIC ROUTES (NO SIDEBAR) */}
+        <Route path="/" element={<Overview />} />
         <Route path="/overview" element={<Overview />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

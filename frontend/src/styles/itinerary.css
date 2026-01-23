@@ -16,95 +16,13 @@
 }
 
 /* ================================
-   ANIMATED BACKGROUND
+   GLOBAL
 ================================ */
 
-.main-content {
-  background: linear-gradient(-45deg, #fdfaf7, #f8f4f0, #f5ede4, #f2e8d8, #efe3cc) !important;
-  background-size: 400% 400% !important;
-  animation: gradientShift 8s ease-in-out infinite !important;
-  position: relative !important;
+body {
+  font-family: var(--font-heading);
+  background: var(--white);
 }
-
-.main-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(212, 163, 115, 0.12) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(193, 150, 96, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(245, 230, 211, 0.15) 0%, transparent 50%);
-  animation: floatingBubbles 12s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes floatingBubbles {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.7;
-  }
-  33% {
-    transform: translateY(-20px) rotate(120deg);
-    opacity: 0.9;
-  }
-  66% {
-    transform: translateY(10px) rotate(240deg);
-    opacity: 0.8;
-  }
-}
-
-/* Ensure content appears above background */
-.main-content > * {
-  position: relative;
-  z-index: 1;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(212, 163, 115, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(212, 163, 115, 0.06) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(212, 163, 115, 0.04) 0%, transparent 50%);
-  animation: floatingBubbles 12s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -1;
-}
-
-@keyframes floatingBubbles {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.6;
-  }
-  33% {
-    transform: translateY(-15px) rotate(120deg);
-    opacity: 0.8;
-  }
-  66% {
-    transform: translateY(8px) rotate(240deg);
-    opacity: 0.7;
-  }
-}
-
-
 
 /* ================================
    PAGE HEADERS
@@ -410,50 +328,6 @@ body::before {
 .event-time .clock {
   color: var(--primary-accent);
   font-size: 16px;
-}
-
-.event-actions {
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.event-card:hover .event-actions {
-  opacity: 1;
-}
-
-.action-btn {
-  background: var(--soft-bg);
-  border: 1px solid var(--border-neutral);
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-
-.action-btn:hover {
-  background: var(--primary-accent);
-  color: white;
-  border-color: var(--primary-accent);
-}
-
-.action-btn.edit {
-  color: #0066cc;
-}
-
-.action-btn.duplicate {
-  color: #28a745;
-}
-
-.action-btn.delete {
-  color: #dc3545;
 }
 
 /* Delete button already defined earlier */

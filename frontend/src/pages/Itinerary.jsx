@@ -5,12 +5,14 @@ import {
   createEventApi,
   deleteEventApi,
   fetchEventsApi,
+  updateEventApi,
 } from "../services/eventApi";
 import "../styles/itinerary.css";
 
 export default function Itinerary() {
   const [events, setEvents] = useState(null);
   const [showEventDialog, setShowEventDialog] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
@@ -37,21 +39,65 @@ export default function Itinerary() {
 
   const handleAddEvent = async (eventData) => {
     try {
-      await createEventApi(eventData);
-      setShowEventDialog(false);
-      loadEvents();
+      let res;
+      if (editingEvent) {
+        // Update existing event
+        res = await updateEventApi(editingEvent._id, eventData);
+      } else {
+        // Create new event
+        res = await createEventApi(eventData);
+      }
+      
+      if (res.data?.success) {
+        setShowEventDialog(false);
+        setEditingEvent(null);
+        loadEvents();
+      } else {
+        alert("Failed to save event: " + (res.data?.error || "Unknown error"));
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Error details:", err.response?.data);
+      alert("Error: " + (err.response?.data?.error || err.message || "Failed to save event"));
     }
+  };
+
+  const handleEditEvent = (event) => {
+    console.log("Editing event:", event);
+    setEditingEvent(event);
+    setShowEventDialog(true);
+  };
+
+  const handleDuplicateEvent = (event) => {
+    console.log("Duplicating event:", event);
+    const newEvent = {
+      title: event.title + " (Copy)",
+      startTime: event.startTime,
+      endTime: event.endTime,
+      eventType: event.eventType
+    };
+    handleAddEvent(newEvent);
+  };
+
+  const closeEventDialog = () => {
+    setShowEventDialog(false);
+    setEditingEvent(null);
   };
 
   const handleDeleteEvent = async (id) => {
     if (!window.confirm("Delete this event?")) return;
     try {
-      await deleteEventApi(id);
-      loadEvents();
+      console.log("Deleting event ID:", id);
+      const res = await deleteEventApi(id);
+      console.log("Delete response:", res.data);
+      if (res.data?.success) {
+        loadEvents();
+        alert("Event deleted successfully");
+      } else {
+        alert("Failed to delete event: " + (res.data?.error || "Unknown error"));
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Delete error details:", err.response?.data || err.message);
+      alert("Error: " + (err.response?.data?.error || err.message || "Failed to delete event"));
     }
   };
 
@@ -168,7 +214,12 @@ export default function Itinerary() {
       </div>
 
       {sortedEvents.length > 0 ? (
-        <Timeline events={sortedEvents} onDelete={handleDeleteEvent} />
+        <Timeline 
+          events={sortedEvents} 
+          onDelete={handleDeleteEvent}
+          onEdit={handleEditEvent}
+          onDuplicate={handleDuplicateEvent}
+        />
       ) : (
         <div className="empty-state">
           <h3>No events planned yet</h3>
@@ -193,10 +244,10 @@ export default function Itinerary() {
       {showEventDialog && (
         <div className="dialog-backdrop">
           <div className="dialog">
-            <h3>Add Event</h3>
-            <EventForm onAdd={handleAddEvent} />
+            <h3>{editingEvent ? "Edit Event" : "Add Event"}</h3>
+            <EventForm onAdd={handleAddEvent} event={editingEvent} />
             <div className="dialog-actions">
-              <button onClick={() => setShowEventDialog(false)}>Cancel</button>
+              <button onClick={closeEventDialog}>Cancel</button>
             </div>
           </div>
         </div>

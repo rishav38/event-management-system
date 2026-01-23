@@ -2,8 +2,11 @@ const Guest = require("../models/Guest");
 
 const addGuest = async (req, res) => {
   try {
-    const { name, phone, side, events } = req.body;
+    const { name, phone, side, events, rsvp } = req.body;
     const { weddingId } = req.user; // from JWT
+
+    console.log("Received request body:", req.body); // Debug log
+    console.log("Adding guest with data:", { name, phone, side, events, weddingId }); // Debug log
 
     if (!name || !phone || !side) {
       return res.status(400).json({
@@ -12,13 +15,20 @@ const addGuest = async (req, res) => {
       });
     }
 
-    const guest = await Guest.create({
+    const guestData = {
       name,
       phone,
       side,
-      events,
+      events: Array.isArray(events) ? events : (events ? [events] : []), // Ensure it's an array
+      rsvp: rsvp || "PENDING",
       weddingId,
-    });
+    };
+
+    console.log("Creating guest with:", guestData); // Debug log
+
+    const guest = await Guest.create(guestData);
+
+    console.log("Created guest:", guest.toObject()); // Debug log
 
     res.status(201).json({
       success: true,
@@ -26,6 +36,7 @@ const addGuest = async (req, res) => {
       message: "Guest added successfully",
     });
   } catch (err) {
+    console.error("Error adding guest:", err); // Debug log
     res.status(500).json({
       success: false,
       message: err.message,

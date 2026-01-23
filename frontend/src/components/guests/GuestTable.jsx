@@ -65,7 +65,7 @@ const GuestTable = ({ guests = [], filter, side, setGuests }) => {
                 <td>{guest.name}</td>
                 <td>{guest.phone}</td>
                 <td>{guest.side}</td>
-                <td>{guest.events.join(", ")}</td>
+                <td>{guest.events && guest.events.length > 0 ? guest.events.join(", ") : "No events"}</td>
                 <td>
                   <select
                     value={guest.rsvp}

@@ -100,6 +100,13 @@ const addGuestSchema = Joi.object({
     "string.empty": "Side (BRIDE/GROOM) is required",
     "any.only": "Side must be either BRIDE or GROOM",
   }),
+  events: Joi.array().items(Joi.string().trim().max(150)).default([]).messages({
+    "array.base": "Events must be an array",
+    "string.max": "Event name cannot exceed 150 characters",
+  }),
+  rsvp: Joi.string().valid("PENDING", "ACCEPTED", "DECLINED").default("PENDING").messages({
+    "any.only": "RSVP must be PENDING, ACCEPTED, or DECLINED",
+  }),
 });
 
 const updateGuestSchema = Joi.object({

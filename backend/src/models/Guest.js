@@ -22,6 +22,12 @@ const guestSchema = new mongoose.Schema(
     events: {
       type: [String],
       default: [],
+      validate: {
+        validator: function(v) {
+          return Array.isArray(v);
+        },
+        message: 'Events must be an array'
+      }
     },
 
     rsvp: {
@@ -36,12 +42,23 @@ const guestSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { 
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+  }
 );
 
 // Indexes for performance
 guestSchema.index({ weddingId: 1 });
 guestSchema.index({ weddingId: 1, rsvp: 1 });
 guestSchema.index({ weddingId: 1, side: 1 });
+
+// Debug pre-save hook
+guestSchema.pre('save', function(next) {
+  console.log('Pre-save guest data:', this.toObject());
+  console.log('Events field:', this.events);
+  next();
+});
 
 module.exports = mongoose.model("Guest", guestSchema);

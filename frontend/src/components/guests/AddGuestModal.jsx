@@ -1,18 +1,43 @@
+import { useState, useEffect } from "react";
+import { fetchEventsApi } from "../../services/eventApi";
+
 const AddGuestModal = ({ onClose, onAdd }) => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const res = await fetchEventsApi();
+        const data = res.data?.events || res.data?.data || res.data || [];
+        setEvents(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Failed to load events:", err);
+        setEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadEvents();
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
+    const selectedEvent = form.event.value;
+
+    console.log("Selected event:", selectedEvent); // Debug log
 
     const newGuest = {
-      id: Date.now(),
       name: form.name.value,
       phone: form.phone.value,
       side: form.side.value,
-      events: [form.event.value],
+      events: selectedEvent ? [selectedEvent] : [], // Ensure it's an array
       rsvp: "PENDING",
     };
 
+    console.log("New guest data:", newGuest); // Debug log
     onAdd(newGuest);
     onClose();
   };
@@ -31,15 +56,24 @@ const AddGuestModal = ({ onClose, onAdd }) => {
             <option value="GROOM">Groom Side</option>
           </select>
 
-          <select name="event">
-            <option value="Reception">Reception</option>
-            <option value="Wedding">Wedding</option>
-            <option value="Mehndi">Mehndi</option>
+          <select name="event" required>
+            <option value="">Select Event</option>
+            {loading ? (
+              <option disabled>Loading events...</option>
+            ) : events.length > 0 ? (
+              events.map((event) => (
+                <option key={event._id} value={event.title}>
+                  {event.title} - {new Date(event.startTime).toLocaleDateString()}
+                </option>
+              ))
+            ) : (
+              <option disabled>No events available</option>
+            )}
           </select>
 
           <div className="modal-actions">
             <button type="button" onClick={onClose}>Cancel</button>
-            <button type="submit">Add</button>
+            <button type="submit" disabled={loading}>Add</button>
           </div>
         </form>
       </div>

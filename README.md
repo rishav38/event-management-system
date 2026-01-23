@@ -67,9 +67,6 @@ I also pushed continuous updates from my local system and maintained feature bra
 - Analytics dashboard for events
 - Deployment using Docker and cloud services
 
-## 📷 Screenshots
-
-(Add screenshots of your UI here later)
 
 ## 📬 Contact
 

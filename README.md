@@ -3,8 +3,6 @@
 A full-stack web application to manage events, users, schedules, and notes through a simple and user-friendly interface.  
 This project was developed as a team project and enhanced with additional features and optimizations.
 
----
-
 ## 📌 Project Overview
 
 The Event Management System helps users to:
@@ -15,7 +13,6 @@ The Event Management System helps users to:
 
 The goal of this project is to simplify event coordination and provide a centralized platform for managing event-related activities.
 
----
 
 ## ✨ Features
 
@@ -26,7 +23,6 @@ The goal of this project is to simplify event coordination and provide a central
 - 🔎 Event Filtering and Search
 - 🎨 Responsive UI Design
 
----
 
 ## 🛠 Tech Stack
 
@@ -46,8 +42,6 @@ The goal of this project is to simplify event coordination and provide a central
 - Git & GitHub
 - Postman (API testing)
 
----
-
 ## 👩‍💻 My Contributions
 
 As part of the development team, my responsibilities included:
@@ -61,8 +55,6 @@ As part of the development team, my responsibilities included:
 
 I also pushed continuous updates from my local system and maintained feature branches during development.
 
----
-
 ## 🚀 Future Enhancements
 
 - Role-based access control (Admin / Organizer / User)
@@ -71,16 +63,9 @@ I also pushed continuous updates from my local system and maintained feature bra
 - Analytics dashboard for events
 - Deployment using Docker and cloud services
 
----
-
-## 📷 Screenshots
-
-(Add screenshots of your UI here later)
-
----
 
 ## 📬 Contact
 
 **Padmapriya C**  
 BE CSE | Aspiring Software Engineer  
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/padmapriya-2424

